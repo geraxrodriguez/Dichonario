@@ -1,0 +1,40 @@
+.example-header {
+    font-size: 30px;
+    color: white;
+};
+
+.examples-form {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.example-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.example-input {
+    flex: 1;
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #b1b1b1;
+    border-radius: 5px;
+}
+
+.add-example-btn {
+    padding: 5px 12px;
+    border: none;
+    background-color:  rgb(99 102 241);
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-example-btn:hover {
+    background-color: rgb(245 158 11);;
+}
