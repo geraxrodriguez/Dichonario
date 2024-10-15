@@ -1,6 +1,5 @@
 const Sub = require('../models/Sub')
 const Dicho = require('../models/Dicho')
-const validator = require('validator');
 
 module.exports = {
     cron: (req, res) => {
@@ -29,8 +28,7 @@ module.exports = {
     },
     surpriseMe: async (req, res) => {
         try {
-            // instead of accessing dicho using indexing, dicho[0]. We can destructure since theres only one dicho in returned array
-            const [ dicho ] = await Dicho.aggregate([{ $sample: { size: 1 } }]);
+            const [ dicho ] = await Dicho.aggregate([{ $sample: { size: 1 } }]); // $sample randomly selects the specificed number of documents
             const id = dicho._id;
             res.status(200).send(id);
         } catch (error) {
