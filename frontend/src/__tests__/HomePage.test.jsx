@@ -2,7 +2,7 @@ import { describe, test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import HomePage from '../../pages/HomePage';
+import HomePage from '../pages/HomePage';
 
 describe('HomePage tests', () => {
     

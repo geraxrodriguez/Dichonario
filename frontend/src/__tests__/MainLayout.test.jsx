@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from 'react-router-dom';
-import MainLayout from "../../layouts/MainLayout";
+import MainLayout from "../layouts/MainLayout";
 
 test('renders Navbar and Footer components in MainLayout', () => {
     render(
@@ -10,8 +10,8 @@ test('renders Navbar and Footer components in MainLayout', () => {
     );
 
     const navbar = screen.getByRole('navigation');
-    expect(navbar).toBeInTheDocument;
-
     const footer = screen.getByText(/Website by:/i);
+    
+    expect(navbar).toBeInTheDocument;
     expect(footer).toBeInTheDocument;
 });
