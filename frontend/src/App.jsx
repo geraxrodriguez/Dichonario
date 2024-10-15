@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage';
-import DichosPage from './pages/DichosPage'
+import DichosPage from './pages/DichosPage';
 import SingleDichoPage from './pages/SingleDichoPage';
 import SubmitDichoPage from './pages/SubmitDichoPage';
 import SuccessPage from './pages/SuccessPage';

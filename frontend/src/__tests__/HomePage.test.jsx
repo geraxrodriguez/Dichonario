@@ -19,10 +19,10 @@ describe('HomePage tests', () => {
         const link = screen.getByText('Browse Dichos');
         const btn = screen.getByText('Surprise Me');
     
-        expect(h1).toBeInTheDocument;
-        expect(h2).toBeInTheDocument;
-        expect(link).toBeInTheDocument;
-        expect(btn).toBeInTheDocument;
+        expect(h1).toBeInTheDocument();
+        expect(h2).toBeInTheDocument();
+        expect(link).toBeInTheDocument();
+        expect(btn).toBeInTheDocument();
     });
 
     // test('navigates to /dichos after clicking link', async () => {

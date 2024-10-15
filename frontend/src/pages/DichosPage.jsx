@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import DichoCard from '../components/DichoCard';
 
-const Dichos = () => {
+const DichosPage = () => {
   const [dichos, setDichos] = useState([]);
 
   useEffect(() => {
     const getDichos = async () => {
       try {
-        const res = await axios.get('https://dichonario-mern.onrender.com/dichos');
-        console.log(res.data.dichos);
+        const res = await axios.get('https://dichonario.onrender.com/dichos');
         setDichos(res.data.dichos);
       } catch (error) {
         console.log('Error fetching data', error);
@@ -19,8 +18,7 @@ const Dichos = () => {
   }, []);
 
   return (
-    // <section className="bg-blue-50 px-4 py-6 h-5/6 overflow-auto">
-    <section className="flex flex-1 justify-center bg-blue-50 px-4 py-6">
+    <section className="flex justify-center bg-blue-50 px-4 py-6">
 
       <div className="px-4">
         <h2 className="text-3xl font-bold mb-6 text-center">
@@ -38,4 +36,4 @@ const Dichos = () => {
   )
 }
 
-export default Dichos;
+export default DichosPage;

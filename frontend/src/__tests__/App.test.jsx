@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom'; // simulates routing for tests
+import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 
 test('render HomePage component at root route', async () => {
