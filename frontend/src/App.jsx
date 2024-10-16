@@ -13,7 +13,7 @@ import SignUpPage from './pages/SignUpPage';
 const App = () => {
   return (
     <Routes>
-      {/* Routes with layout */}
+
       <Route path="/" element={< MainLayout />}>
         <Route index element={< HomePage />} />
         <Route path="/dichos" element={< DichosPage />} />
@@ -26,6 +26,7 @@ const App = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/admin/create-dicho" element={< AdminCreateDichoPage />} />
+
     </Routes>
   );
 };
