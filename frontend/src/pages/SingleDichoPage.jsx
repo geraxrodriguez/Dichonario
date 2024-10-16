@@ -3,8 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const SingleDichoPage = () => {
-    const [suggestions, setSuggestions] = useState('')
     const [dicho, setDicho] = useState({});
+    const [suggestions, setSuggestions] = useState('')
     const [examples, setExamples] = useState([]);
     const navigate = useNavigate();
     const { id } = useParams();
@@ -13,8 +13,7 @@ const SingleDichoPage = () => {
     useEffect(() => {
         const getDicho = async () => {
             try {
-                const res = await axios.get(`https://dichonario-mern.onrender.com/dichos/${id}`);
-                // console.log(res.data)
+                const res = await axios.get(`https://dichonario.onrender.com/dichos/${id}`);
                 setDicho(res.data);
                 setExamples(res.data.examples);
             } catch (error) {
@@ -28,7 +27,8 @@ const SingleDichoPage = () => {
         e.preventDefault();
         try {
             const res = await axios.post(`https://dichonario-mern.onrender.com/dichos/${id}/suggestions`, { suggestions, })
-            navigate('/success');
+            console.log(res)
+            // navigate('/success');
         } catch (error) {
             console.log('Error submitting form', error)
         }
@@ -70,10 +70,6 @@ const SingleDichoPage = () => {
                         <h3 className="text-indigo-800 font-bold mb-1">
                             Example(s)
                         </h3>
-
-                        {/* <p className="text-lg mb-6 whitespace-pre-wrap">
-                            {dicho.examples}
-                        </p> */}
 
                         {examples.map((example, index) => (
                             <p key={index} className="text-lg mb-3 whitespace-pre-wrap">

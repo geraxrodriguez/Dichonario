@@ -1,6 +1,7 @@
 const Sub = require('../models/Sub')
 const Dicho = require('../models/Dicho')
 
+
 module.exports = {
     cron: (req, res) => {
         res.send('ok')
