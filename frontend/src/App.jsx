@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage';
-import DichosPage from './pages/DichosPage'
+import DichosPage from './pages/DichosPage';
 import SingleDichoPage from './pages/SingleDichoPage';
 import SubmitDichoPage from './pages/SubmitDichoPage';
 import SuccessPage from './pages/SuccessPage';
@@ -13,7 +13,7 @@ import SignUpPage from './pages/SignUpPage';
 const App = () => {
   return (
     <Routes>
-      {/* Routes with layout */}
+
       <Route path="/" element={< MainLayout />}>
         <Route index element={< HomePage />} />
         <Route path="/dichos" element={< DichosPage />} />
@@ -26,6 +26,7 @@ const App = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/admin/create-dicho" element={< AdminCreateDichoPage />} />
+
     </Routes>
   );
 };
