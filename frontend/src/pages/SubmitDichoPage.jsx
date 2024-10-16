@@ -30,7 +30,8 @@ const SubmitDichoPage = () => {
         };
         console.log("New Dicho:", newDicho)
         axios
-            .post('https://dichonario-mern.onrender.com/submit-dicho', newDicho)
+            .post('http://localhost:2222/submit-dicho', newDicho)
+            // .post('https://dichonario-mern.onrender.com/submit-dicho', newDicho)
             .then(() => {
                 console.log('Dicho submitted successfully.')
                 navigate('/success');

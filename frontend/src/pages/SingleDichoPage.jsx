@@ -13,7 +13,7 @@ const SingleDichoPage = () => {
     useEffect(() => {
         const getDicho = async () => {
             try {
-                const res = await axios.get(`https://dichonario.onrender.com/dichos/${id}`);
+                const res = await axios.get(`http://localhost:2222/dichos/${id}`);
                 setDicho(res.data);
                 setExamples(res.data.examples);
             } catch (error) {
@@ -26,9 +26,9 @@ const SingleDichoPage = () => {
     const submitSuggestions = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`https://dichonario-mern.onrender.com/dichos/${id}/suggestions`, { suggestions, })
+            const res = await axios.post(`https://dichonario.onrender.com/dichos/${id}/suggestions`, { suggestions, })
             console.log(res)
-            // navigate('/success');
+            navigate('/success');
         } catch (error) {
             console.log('Error submitting form', error)
         }
@@ -66,7 +66,7 @@ const SingleDichoPage = () => {
                         <p className="text-lg mb-6 whitespace-pre-wrap">
                             {dicho.history}
                         </p>
-                        
+
                         <h3 className="text-indigo-800 font-bold mb-1">
                             Example(s)
                         </h3>
