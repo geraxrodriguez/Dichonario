@@ -1,6 +1,7 @@
 const Sub = require('../models/Sub')
 const Dicho = require('../models/Dicho')
 
+
 module.exports = {
     cron: (req, res) => {
         res.send('ok')
@@ -39,8 +40,6 @@ module.exports = {
     // SUBMIT DICHO FORM
     submitDicho: async (req, res) => {
         try {
-            // console.log('We reached the createSub method')
-            console.log(req.body)
             const { dicho, literalMeaning, actualMeaning, examples, related, comments, history } = req.body
             const sub = await Sub.create({
                 dicho,
@@ -69,4 +68,4 @@ module.exports = {
             console.error(err);
         };
     },
-}
+};

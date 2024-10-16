@@ -1,27 +1,31 @@
-const express = require('express')
+const express = require('express');
 const session = require('express-session');
 const MemoryStore = require('memorystore')(session);
 const passport = require('passport');
-const connectDB = require('./config/database')
-const cors = require('cors')
+const connectDB = require('./config/database');
+const cors = require('cors');
 // const cookieParser = require('cookie-parser');
 // const MongoStore = require ('connect-mongo');
 
 // Define express app variable
-const app = express()
+const app = express();
 
 // Enable environment variables
-require('dotenv').config({ path: './config/.env' })
+require('dotenv').config({ path: './config/.env' });
 
 // Passport configuration
 require('./config/passport');
 
 // Import routes
-const mainRoutes = require('./routes/mainRoutes')
-const adminRoutes = require('./routes/adminRoutes')
+const mainRoutes = require('./routes/mainRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 const authRoutes = require('./routes/authRoutes');
 
-app.use(cors())
+app.use(cors());
+
+// Parse POST / PUT requests. Needs to be placed before routes.
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/', mainRoutes);
@@ -29,11 +33,8 @@ app.use('/admin', adminRoutes);
 app.use('/auth', authRoutes);
 
 // Define public folder
-app.use(express.static('public'))
+app.use(express.static('public'));
 
-// Parse POST / PUT requests
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 // Configure session 
 app.use(
@@ -58,6 +59,6 @@ app.use(passport.session());
 connectDB()
     .then(() => {
         app.listen(process.env.PORT, () => {
-            console.log(`Server running on port ${process.env.PORT}`)
+            console.log(`Server running on port ${process.env.PORT}`);
         })
-    })
+    });
