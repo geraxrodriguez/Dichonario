@@ -39,6 +39,4 @@ describe('HomePage tests', () => {
         const dichosPageHeading = await screen.findByText('Los Dichos');
         expect(dichosPageHeading).toBeInTheDocument();
     });
-
-
 });
