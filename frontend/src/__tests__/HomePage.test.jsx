@@ -1,12 +1,11 @@
 import { describe, test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
+import DichosPage from '../pages/DichosPage';
 
 describe('HomePage tests', () => {
-    
-
     test('hero elements render in HomePage', () => {
         render(
             <MemoryRouter>
@@ -25,16 +24,21 @@ describe('HomePage tests', () => {
         expect(btn).toBeInTheDocument();
     });
 
-    // test('navigates to /dichos after clicking link', async () => {
-    //     render(
-    //         <MemoryRouter>
-    //             <HomePage />
-    //         </MemoryRouter>
-    //     );
-    //     const user = userEvent.setup();
-    //     const link = screen.getByText('Browse Dichos');
-    //     await user.click(link);
-    //     expect(screen.getByText('Los Dichos')).toBeInTheDocument 
-    // });
+    test('navigates to DichosPage after clicking link', async () => {
+        render(
+            <MemoryRouter initialEntries={[ '/' ]}>
+                <Routes>
+                    <Route path='/' element={ <HomePage /> } />
+                    <Route path='/dichos' element={ <DichosPage /> } />
+                </Routes>
+            </MemoryRouter>
+        );
+
+        const link = screen.getByRole('link', { name: /dichos/i });
+        userEvent.click(link);
+        const dichosPageHeading = await screen.findByText('Los Dichos');
+        expect(dichosPageHeading).toBeInTheDocument();
+    });
+
 
 });
