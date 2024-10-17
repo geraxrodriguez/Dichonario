@@ -41,7 +41,7 @@ module.exports = {
     submitDicho: async (req, res) => {
         try {
             const { dicho, literalMeaning, actualMeaning, examples, related, comments, history } = req.body
-            const sub = await Sub.create({
+            await Sub.create({
                 dicho,
                 literalMeaning,
                 actualMeaning,
@@ -49,11 +49,11 @@ module.exports = {
                 related,
                 comments,
                 history,
-            })
-            return res.status(201).send(sub);
+            });
+            return res.status(201).send('Submission has been received :)');
         } catch (err) {
             console.error(err)
-            res.status(500).send({ message: err.message });
+            res.status(500).send({ message: 'oops! There was an error' });
         }
     },
 
