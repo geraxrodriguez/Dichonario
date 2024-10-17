@@ -1,44 +1,5 @@
-.navbar {
-    border-top: 1px solid rgb(99 102 241);
-    margin-top: auto;
-    min-height: 4rem;
-    color: rgb(209 213 219);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.outerContainer {
-    margin: 0 auto;
-    max-width: 65rem;
-    /* border: 1px solid black; */
-    min-width: 23.125rem;
-    
-    @media (min-width: 768px) {
-        min-width: 24rem;
-        padding: 0 1.5rem;
-    };
-
-    @media (min-width: 1024px) {
-        padding: 0 2rem;
-    }
-}
-.linkContainer {
-    display: flex;    
-    @media (min-width: 768px) {
-        margin: 0 0 0 auto;
-    }
-}
 #dichoLink{
-    @media (max-width: 768px){
+    @media (min-width: 768px){
         margin: 0 .25rem;
-    }
-}
-#dnLetters {
-    width: auto;
-    color: white;
-    font-size: 2.5rem;
-    font-weight: bold;
-    @media (min-width: 768px) {
-        display: none;
     }
 }

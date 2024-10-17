@@ -26,7 +26,6 @@ const SubmitDichoPage = () => {
             history: history || 'No history yet for this dicho.',
         };
         try {
-            // await axios.post('http://localhost:2222/submit-dicho', newDicho)
             await axios.post('https://dichonario.onrender.com/submit-dicho', newDicho)
             navigate('/success');
         } catch (error) {
