@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+
 import DichoDetails from '../components/DichoDetails';
 import DichoExamples from './DichoExamples';
 import SuggestionsForm from '../components/SuggestionsForm';

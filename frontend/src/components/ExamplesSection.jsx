@@ -1,5 +1,5 @@
 import '../styles/ExamplesSection.css';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const examplesForm = () => {
   const [examples, setExamples] = useState(['']); // Initialize with one example so that one input field is there when page is rendered

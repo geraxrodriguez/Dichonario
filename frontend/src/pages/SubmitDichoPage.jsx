@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/ExamplesSection.css'
 // import ExamplesSection from '../components/ExamplesSection'
 import axios from 'axios';
+import FormField from '../components/FormField';
 
 const SubmitDichoPage = () => {
     const [dicho, setDicho] = useState('');
@@ -13,12 +14,12 @@ const SubmitDichoPage = () => {
     const [comments, setComments] = useState('');
     const [history, setHistory] = useState('');
 
-    // navigate use to redirect after submitting Dicho
     const navigate = useNavigate();
 
-    // FUNCTION FOR SUBMITTING DICHO
-    const submitDicho = (e) => {
-        e.preventDefault(); // prevent default form submission
+    const labelClasses = "block text-gray-700 font-bold mb-2";
+
+    const submitDicho = async (e) => {
+        e.preventDefault();
         const newDicho = {
             dicho,
             literalMeaning,
@@ -28,31 +29,24 @@ const SubmitDichoPage = () => {
             comments,
             history: history || 'No history yet for this dicho.',
         };
-        console.log("New Dicho:", newDicho)
-        axios
-            .post('http://localhost:2222/submit-dicho', newDicho)
-            // .post('https://dichonario-mern.onrender.com/submit-dicho', newDicho)
-            .then(() => {
-                console.log('Dicho submitted successfully.')
-                navigate('/success');
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        try {
+            await axios.post('http://localhost:2222/submit-dicho', newDicho)
+            // await axios.post('https://dichonario.onrender.com/submit-dicho', newDicho)
+            navigate('/success');
+        } catch (error) {
+            console.log(error);
+        }
     };
 
-    // Functions for Example(s) sub-section
     const addExample = () => {
         setExamples([...examples, '']); // Add a new empty example
     };
 
     const deleteExample = (index) => {
-        if (index === 0) { return; }           // user is only able to delete exampel field if there is more than one field
+        if (index === 0) { return; }
         const newExamples = [...examples]
         newExamples.splice(index, 1)
-        setExamples(newExamples);              // Delete example
-        //console.log(newExamples.splice(index, 1)) // logs array of removed elements
-        //console.log(newExamples)                  // logs array of remaining elements
+        setExamples(newExamples);
     };
 
     const handleChange = (index, value) => {
@@ -63,92 +57,66 @@ const SubmitDichoPage = () => {
     return (
         <>
             <section className="bg-indigo-50 text-left flex-1">
-                {/* section */}
                 <div className="mx-auto max-w-2xl min-w-xl py-5">
-                    {/* outer */}
 
                     <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
                         <form onSubmit={submitDicho}>
-                            <h2 className="text-3xl text-center font-semibold mb-6">Submit a Dicho</h2>
+                            <h1 className="text-3xl text-center font-semibold mb-6">
+                                Submit a Dicho
+                            </h1>
 
-                            <div className="mb-4">
-                                <label className="block text-gray-700 font-bold mb-2"
-                                >* Dicho</label
-                                >
-                                <input
-                                    type="text"
-                                    id="dicho"
-                                    name="dicho"
-                                    className="border border-gray-400 rounded w-full py-2 px-3 mb-2"
-                                    placeholder='"Se me fue el avion"'
-                                    required
-                                    value={dicho}
-                                    onChange={(e) => setDicho(e.target.value)}
-                                />
-                            </div>
+                            {/* Dicho */}
+                            <FormField 
+                                htmlFor='dicho'
+                                label='* Dicho'
+                                placeholder='Se me fue el avion'
+                                required={true}
+                                onChange={(e) => setDicho(e.target.value)}
+                                value={dicho}
+                                name="dicho"
+                                id="dicho"
+                                rows={1}                            
+                            />
 
                             {/* Literal Meaning */}
-                            <div className="mb-4">
-                                <label
-                                    htmlFor="literalMeaning"
-                                    className="block text-gray-700 font-bold mb-2"
-                                >* Literal Meaning</label
-                                >
-                                <textarea
-                                    id="literalMeaning"
-                                    name="literalMeaning"
-                                    className="border border-gray-400 rounded w-full py-2 px-3"
-                                    rows="3"
-                                    placeholder='"The plane without left me"'
-                                    required
-                                    value={literalMeaning}
-                                    onChange={(e) => setLiteralMeaning(e.target.value)}
-                                ></textarea>
-                            </div>
+                            <FormField
+                                htmlFor='literalMeaning'
+                                label={'* Literal Meaning'}
+                                placeholder='The plane left without me'
+                                required={true}
+                                onChange={(e) => setLiteralMeaning(e.target.value)}
+                                value={literalMeaning}
+                                name="literalMeaning"
+                                id="literalMeaning"
+                            />
 
                             {/* Actual Meaning */}
-                            <div className="mb-4">
-                                <label
-                                    htmlFor="actualMeaning"
-                                    className="block text-gray-700 font-bold mb-2"
-                                >* Actual Meaning</label
-                                >
-                                <textarea
-                                    id="actualMeaning"
-                                    name="actualMeaning"
-                                    className="border border-gray-400 rounded w-full py-2 px-3"
-                                    rows="3"
-                                    placeholder='"I missed it. I was not paying attention"'
-                                    required
-                                    value={actualMeaning}
-                                    onChange={(e) => setActualMeaning(e.target.value)}
-                                ></textarea>
-                            </div>
+                            <FormField
+                                htmlFor='actualMeaning'
+                                label='* Actual Meaning'
+                                placeholder='I missed it. I was not paying attention'
+                                required={true}
+                                onChange={(e) => setActualMeaning(e.target.value)}
+                                value={actualMeaning}
+                                name="actualMeaning"
+                                id="actualMeaning"
+                            />
 
                             {/* History */}
-                            <div className="mb-4">
-                                <label
-                                    htmlFor="history"
-                                    className="block text-gray-700 font-bold mb-2"
-                                >History and Origins</label
-                                >
-                                <textarea
-                                    id="history"
-                                    name="history"
-                                    className="border border-gray-400 rounded w-full py-2 px-3"
-                                    rows="3"
-                                    value={history}
-                                    onChange={(e) => setHistory(e.target.value)}
-                                ></textarea>
-                            </div>
+                            <FormField
+                                htmlFor='history'
+                                label='History and Origins'
+                                onChange={(e) => setHistory(e.target.value)}
+                                value={history}
+                                name="history"
+                                id="history"
+                            />
 
                             {/* Examples  */}
                             <div className="mb-4 border border-gray-400 rounded w-full py-2 px-3 mb-2">
-                                <label
-                                    htmlFor="examples"
-                                    className="block text-gray-700 font-bold mb-2"
-                                >* Example(s)</label
-                                >
+                                <label htmlFor="examples" className={labelClasses}>
+                                    * Example(s)
+                                </label>
                                 {examples.map((example, index) => (
                                     <div key={index} className="example-field">
                                         <input
@@ -171,41 +139,15 @@ const SubmitDichoPage = () => {
                                 </button>
                             </div>
 
-                            {/* Related */}
-                            {/* <div className="mb-4 border border-gray-400 rounded w-full py-2 px-3">
-                                <label
-                                    htmlFor="related"
-                                    className="block text-gray-700 font-bold mb-2"
-                                >Related Dichos</label
-                                >
-                                <textarea
-                                    id="related"
-                                    name="related"
-                                    className="border rounded w-full py-2 px-3"
-                                    rows="3"
-                                    placeholder='"se me fue el avion" = "se me durmio el gallo"'
-                                    value={related}
-                                    onChange={(e) => setRelated(e.target.value)}
-                                ></textarea>
-                            </div> */}
-
-                            {/* Comments */}
-                            <div className="mb-4">
-                                <label
-                                    htmlFor="comments"
-                                    className="block text-gray-700 font-bold mb-2"
-                                >Other Comments</label
-                                >
-                                <textarea
-                                    id="comments"
-                                    name="comments"
-                                    className="border border-gray-400 rounded w-full py-0 px-3"
-                                    rows="3"
-                                    placeholder=''
-                                    value={comments}
-                                    onChange={(e) => setComments(e.target.value)}
-                                ></textarea>
-                            </div>
+                            {/* Other Comments */}
+                            <FormField
+                                htmlFor='comments'
+                                label='Other Comments'
+                                onChange={(e) => setComments(e.target.value)}
+                                value={comments}
+                                name="comments"
+                                id="comments"
+                            />
 
                             <div>
                                 <button
