@@ -1,22 +1,19 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/ExamplesSection.css'
-// import ExamplesSection from '../components/ExamplesSection'
 import axios from 'axios';
 import FormField from '../components/FormField';
+import ExamplesField from '../components/ExamplesField';
+// import ExamplesSection from '../components/ExamplesSection'
 
 const SubmitDichoPage = () => {
+    const navigate = useNavigate();
+
     const [dicho, setDicho] = useState('');
     const [literalMeaning, setLiteralMeaning] = useState('');
     const [actualMeaning, setActualMeaning] = useState('');
     const [examples, setExamples] = useState(['']);
-    const [related, setRelated] = useState('');
     const [comments, setComments] = useState('');
     const [history, setHistory] = useState('');
-
-    const navigate = useNavigate();
-
-    const labelClasses = "block text-gray-700 font-bold mb-2";
 
     const submitDicho = async (e) => {
         e.preventDefault();
@@ -25,7 +22,6 @@ const SubmitDichoPage = () => {
             literalMeaning,
             actualMeaning,
             examples,
-            related,
             comments,
             history: history || 'No history yet for this dicho.',
         };
@@ -38,22 +34,6 @@ const SubmitDichoPage = () => {
         }
     };
 
-    const addExample = () => {
-        setExamples([...examples, '']); // Add a new empty example
-    };
-
-    const deleteExample = (index) => {
-        if (index === 0) { return; }
-        const newExamples = [...examples]
-        newExamples.splice(index, 1)
-        setExamples(newExamples);
-    };
-
-    const handleChange = (index, value) => {
-        const newExamples = [...examples];
-        newExamples[index] = value;
-        setExamples(newExamples);
-    };
     return (
         <>
             <section className="bg-indigo-50 text-left flex-1">
@@ -113,31 +93,7 @@ const SubmitDichoPage = () => {
                             />
 
                             {/* Examples  */}
-                            <div className="mb-4 border border-gray-400 rounded w-full py-2 px-3 mb-2">
-                                <label htmlFor="examples" className={labelClasses}>
-                                    * Example(s)
-                                </label>
-                                {examples.map((example, index) => (
-                                    <div key={index} className="example-field">
-                                        <input
-                                            type="text"
-                                            value={example}
-                                            onChange={(e) => handleChange(index, e.target.value)}
-                                            className="example-input"
-                                            placeholder={`Example ${index + 1}`}
-                                            id='examples'
-                                            name='examples'
-                                        />
-                                        <button type="button" onClick={() => deleteExample(index)} className="add-example-btn">
-                                            -
-                                        </button>
-                                    </div>
-                                ))}
-
-                                <button type="button" onClick={addExample} className="add-example-btn">
-                                    + Add Another Example
-                                </button>
-                            </div>
+                            <ExamplesField examples={examples} setExamples={setExamples} />
 
                             {/* Other Comments */}
                             <FormField
