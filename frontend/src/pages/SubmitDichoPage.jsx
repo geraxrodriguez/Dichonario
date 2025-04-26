@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import FormField from '../components/FormField';
 import ExamplesField from '../components/ExamplesField';
-// import ExamplesSection from '../components/ExamplesSection'
+
 
 const SubmitDichoPage = () => {
     const navigate = useNavigate();

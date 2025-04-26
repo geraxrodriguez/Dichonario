@@ -20,7 +20,7 @@ module.exports = {
     // GET SINGLE DICHO
     getDicho: async (req, res) => {
         try {
-            const dicho = await Dicho.findById(req.params.id) // find method w/out args returns all documents in collection
+            const dicho = await Dicho.findById(req.params.id)
             return res.status(200).json(dicho);
         } catch (err) {
             console.error('Error fetching dichos:', err);

@@ -21,7 +21,7 @@ const ExamplesField = ({ examples, setExamples }) => {
 
     const handleChange = (index, value) => {
         const newExamples = examples.map((example, i) => 
-            i === index ? value : example // returns same example unless we are on current index, then we return value
+            i === index ? value : example 
         );
         setExamples(newExamples);
     };
@@ -31,18 +31,18 @@ const ExamplesField = ({ examples, setExamples }) => {
             <label htmlFor={forLabel} className="block text-gray-700 font-bold mb-2">
                 * Example(s)
             </label>
-            {examples.map((example, index) => ( // mapping through our examples array
-                <div key={index} className="example-field"> {/* using our current idx as our key, we create div + children for every example */}
+            {examples.map((example, index) => ( 
+                <div key={index} className="example-field"> 
                     <input
                         type="text"
-                        value={example} // sets what goes in the box equal to our current example
-                        onChange={(e) => handleChange(index, e.target.value)} // whenever a change is made in our input field, this function is called, passing in our index and whatever is in the input field
+                        value={example} 
+                        onChange={(e) => handleChange(index, e.target.value)}
                         className="example-input"
                         placeholder={`Example ${index + 1}`}
                         id={`example-${index+1}`}
                         name='examples'
                     />
-                    <button type="button" onClick={() => deleteExample(index)} className="add-example-btn"> {/* deleteExample fires when our button is clicked, passign in our index as an argument */}
+                    <button type="button" onClick={() => deleteExample(index)} className="add-example-btn">
                         -
                     </button>
                 </div>
