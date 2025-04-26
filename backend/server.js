@@ -4,8 +4,6 @@ const MemoryStore = require('memorystore')(session);
 const passport = require('passport');
 const connectDB = require('./config/database');
 const cors = require('cors');
-// const cookieParser = require('cookie-parser');
-// const MongoStore = require ('connect-mongo');
 
 // Define express app variable
 const app = express();
@@ -35,15 +33,14 @@ app.use('/auth', authRoutes);
 // Define public folder
 app.use(express.static('public'));
 
-
 // Configure session 
 app.use(
     session({
         secret: 'secret key',
-        resave: false,                 // don't save session if unmodified
-        saveUninitialized: false,      // don't create session until something stored
+        resave: false,                 
+        saveUninitialized: false,      
         store: new MemoryStore({
-            checkPeriod: 86400000      // prune expired entries every 24h
+            checkPeriod: 86400000      
         }),
         cookie: {
             maxAge: 86400000,

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-//creating schema for submissions aka 'subs'
+// schema for submissions aka 'subs'
 const SubSchema = new mongoose.Schema({
     dicho: {
         type: String,
