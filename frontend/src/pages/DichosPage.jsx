@@ -46,6 +46,7 @@ const DichosPage = () => {
             <h3 className="text-xl font-bold text-center">
               {loadingMessages[loadingStage]}
             </h3>
+            <p>Please give up to a minute for Dichos to load, Dichonario runs on free servers :)</p>
           </div>
         )}
 
